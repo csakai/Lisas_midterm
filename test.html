@@ -1,0 +1,66 @@
+<html ng-app>
+<head>
+ <link rel="stylesheet" text="text/css" href="css/bootstrap.css"
+  
+<script type="text/javascript" src="angular/js/angular.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</head>
+
+<body ng-controller="itemListController" ng-init="items = [
+{type: 'strawberry'},
+
+
+]"> 
+
+<h2>Summon your Vitamin Power</h2>
+<p>Which of these did you eat today?</p>
+<form name="add_item_form" novalidate ng-submit="additem()">
+<input type="text" placeholder="what'd you eat?" ng-model="searchFor" ng-required="true"/>
+
+<button ng-click="additem(new_item)" ng-disabled="add_item_form.$invalid" class="btn btn-success">Add to Your Arsenal</button>
+
+<ul class = "item group" ng-repeat= "item in items | filter:searchFor">
+<div class="adding_item">
+<li ng-model="adding_item.type">
+{{ item.type }}
+</li>
+<li ng-model="adding_item.imageurl">
+  <img ng-src ="{{ item.imageurl }}" alt="{{ item.type }}">
+</li>
+</div>
+</ul>
+
+</form>
+
+
+<div class="arsenal">
+	<h2>Nutrition arsenal</h2>
+	{{ item.type }}
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="js/app.js"></script>
+
+
+<script type="text/javascript">
+	function itemListController( $scope ){
+
+		$scope.items = [
+		{type: 'strawberry', name: 'herbert', occupation: 'dogwalker
+		', superpower: 'power-c boost', imageurl: 'images/strawb.jpg' },
+		{type: 'blueberry', name: 'Ulysses', occupation: 'construction worker', superpower: 'super strength', imageurl: 'images/blueb.jpg' },
+
+    {type: 'orange', title: 'otto sly', occupation: 'ninja', description: 'serious defense', imageurl: 'images/orange.jpg' }
+
+		];
+
+		$scope.additem = function( new_item ){
+			$scope.items.push( new_item );
+			$scope.adding_item = {};
+		};
+
+	};
+	</script>
+
+</body>
+</html>

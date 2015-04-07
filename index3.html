@@ -1,91 +1,67 @@
 
-<html ng-app>
+<html ngApp='vegApp'>
 <head>
- <link rel="stylesheet" text="text/css" href="css/bootstrap.css"
+	 <link rel="stylesheet" text="text/css" href="css/bootstrap.css">
+ <link rel="stylesheet" text="text/css" href="css/style.css">
     <script src="js/modernizr.js"></script>
 <script type="text/javascript" src="angular/js/angular.js"></script>
+<script type="text/javascript" src="app/app.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.2.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
 
-<body ng-init="items = [
-{type: 'strawberry', name: 'Herbert Strawberry', occupation: 'dogwalker', superpower: 'power-C boost', imageurl: 'images/strawb.jpg' },
-
-{type: 'blueberry', name: 'Ulysses Blueberry', occupation: 'construction worker', superpower: 'super strength', imageurl: 'images/blueb.jpg' },
-
-{type: 'orange', name: 'Otto Sly Orange', occupation: 'ninja', superpower: 'serious defense', imageurl: 'images/orange.jpg' },
-
-
-]"> 
+<body ng-init>
+	
+ 
+<div class="sidebar">
+	<h2>VegApp</h2>
+	<p>Here's a fun and easy way to track your daily intake of vitamins, nutrients, and everything good! Watch the goodness rack up!</p>
+	<h3> <a href="http://www.facebook.com">log in</a></h3>
+	<h3> <a href="http://www.facebook.com">more info</a></h3>
+	<h3> <a href="http://www.facebook.com">recipes</a></h3>
 </div>
 
-<article class="item" >
-	<span class ="type" ng-bind="item.type"></span>
-	<span class ="name" ng-bind="item.name"></span>
-	<span class ="occupation" ng-bind="item.occupation"></span>
-	<span class ="superpower" ng-bind="item.occupation"></span>
-	<img class ="image" ng-src="{{item.imageurl}}">
-</article>
-
+<div class="main" ng-controller='itemListController'>
 <h2>Summon your Vitamin Power</h2>
 <p>Which of these did you eat today?</p>
-<form name="add_item_form">
-<input type="text" placeholder="what'd you eat?" ng-model="searchFor"/>
+<form name="add_item_form" novalidate ng-submit="additem()">
+<input type="text" placeholder="what'd you eat?" ng-model="searchFor" ng-required="true"/>
 
-<button ng-click="additem(new_item)" class="btn btn-success">Add to Your Arsenal</button>
+<button ng-click="additem(item)" ng-disabled="add_item_form.$invalid" class="btn btn-success">Add to Your Arsenal</button>
 
-<ul class = "item group" ng-repeat= "item in items | filter:searchFor">
+<ul class = "itemgroup" ng-repeat= "item in items | filter:searchFor">
 <div class="adding_item">
-<li ng-model="adding_item.type">
+	</li>
+<li ng-model="item.imageurl">
+  <img ng-src ="{{ item.imageurl }}" alt="{{ item.type }}">
+</li>
+<li ng-model="item.type">
 {{ item.type }}
 </li>
-<li ng-model="adding_item.name">
+<li ng-model="item.name">
 {{ item.name }}
 </li>
-<li ng-model="adding_item.occupation" >
+<li ng-model="item.occupation" >
 {{ item.occupation }}
 </li>
-<li ng-model="adding_item.superpower">
+<li ng-model="item.superpower">
 {{ item.superpower }}
-</li>
-<li ng-model="adding_item.imageurl">
-  <img ng-src ="{{ item.imageurl }}" alt="{{ item.type }}">
 </li>
 </div>
 </ul>
 
 </form>
 
+
 <div class="arsenal">
-	<h2>Nutrition arsenal</h2>
-	{{ item.type }}
-	{{ item.name }}
-	{{ item.occupation }}
-	{{ item.superpower }}
-	{{ item.imageurl }}
+
+	
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="js/app.js"></script>
 
 
-<script type="text/javascript">
-	function itemListController( $scope ){
 
-		$scope.items = [
-		{type: 'strawberry', name: 'herbert', occupation: 'dogwalker
-		', superpower: 'power-c boost', imageurl: 'images/strawb.jpg' },
-		{type: 'blueberry', name: 'Ulysses', occupation: 'construction worker', superpower: 'super strength', imageurl: 'images/blueb.jpg' },
-
-    {type: 'orange', title: 'otto sly', occupation: 'ninja', description: 'serious defense', imageurl: 'images/orange.jpg' }
-
-		];
-
-		$scope.additem = function( new_item ){
-			$scope.items.push( new_item );
-			$scope.adding_item = {};
-		};
-
-	};
-	</script>
 </body>
 </html>
