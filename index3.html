@@ -1,67 +1,62 @@
 
 <html ngApp='vegApp'>
-<head>
-	 <link rel="stylesheet" text="text/css" href="css/bootstrap.css">
- <link rel="stylesheet" text="text/css" href="css/style.css">
+  <head>
+    <link rel="stylesheet" text="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" text="text/css" href="css/style.css">
     <script src="js/modernizr.js"></script>
-<script type="text/javascript" src="angular/js/angular.js"></script>
-<script type="text/javascript" src="app/app.js"></script>
-<script type="text/javascript" src="js/jquery-1.11.2.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-</head>
-
-<body ng-init>
-	
- 
-<div class="sidebar">
-	<h2>VegApp</h2>
-	<p>Here's a fun and easy way to track your daily intake of vitamins, nutrients, and everything good! Watch the goodness rack up!</p>
-	<h3> <a href="http://www.facebook.com">log in</a></h3>
-	<h3> <a href="http://www.facebook.com">more info</a></h3>
-	<h3> <a href="http://www.facebook.com">recipes</a></h3>
-</div>
-
-<div class="main" ng-controller='itemListController'>
-<h2>Summon your Vitamin Power</h2>
-<p>Which of these did you eat today?</p>
-<form name="add_item_form" novalidate ng-submit="additem()">
-<input type="text" placeholder="what'd you eat?" ng-model="searchFor" ng-required="true"/>
-
-<button ng-click="additem(item)" ng-disabled="add_item_form.$invalid" class="btn btn-success">Add to Your Arsenal</button>
-
-<ul class = "itemgroup" ng-repeat= "item in items | filter:searchFor">
-<div class="adding_item">
-	</li>
-<li ng-model="item.imageurl">
-  <img ng-src ="{{ item.imageurl }}" alt="{{ item.type }}">
-</li>
-<li ng-model="item.type">
-{{ item.type }}
-</li>
-<li ng-model="item.name">
-{{ item.name }}
-</li>
-<li ng-model="item.occupation" >
-{{ item.occupation }}
-</li>
-<li ng-model="item.superpower">
-{{ item.superpower }}
-</li>
-</div>
-</ul>
-
-</form>
+    <script type="text/javascript" src="angular/js/angular.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  </head>
+  <body>
 
 
-<div class="arsenal">
+    <div class="sidebar">
+      <h2>VegApp</h2>
+      <p>Here's a fun and easy way to track your daily intake of vitamins, nutrients, and everything good! Watch the goodness rack up!</p>
+      <h3> <a href="http://www.facebook.com">log in</a></h3>
+      <h3> <a href="http://www.facebook.com">more info</a></h3>
+      <h3> <a href="http://www.facebook.com">recipes</a></h3>
+    </div>
 
-	
-</div>
+    <div class="main" ng-controller='itemListController'>
+      <h2>Summon your Vitamin Power</h2>
+      <p>Which of these did you eat today?</p>
+      <form name="add_item_form" novalidate ng-submit="additem()">
+        <input type="text" placeholder="what'd you eat?" ng-model="searchFor" ng-required="true"/>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="js/app.js"></script>
+        <button ng-click="additem(item)" ng-disabled="add_item_form.$invalid" class="btn btn-success">Add to Your Arsenal</button>
+
+        <ul class = "itemgroup" ng-repeat= "item in items | filter:searchFor">
+          <div class="adding_item">
+            <li ng-model="item.imageurl">
+              <img ng-src ="{{ item.imageurl }}" alt="{{ item.type }}">
+            </li>
+            <li ng-model="item.type">
+              {{ item.type }}
+            </li>
+            <li ng-model="item.name">
+              {{ item.name }}
+            </li>
+            <li ng-model="item.occupation" >
+              {{ item.occupation }}
+            </li>
+            <li ng-model="item.superpower">
+              {{ item.superpower }}
+            </li>
+          </div>
+        </ul>
+
+      </form>
 
 
+      <div class="arsenal">
 
-</body>
+
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
 </html>

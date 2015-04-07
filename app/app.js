@@ -1,47 +1,47 @@
-var vegApp = angular.module('vegApp',[])
+var vegApp = angular.module('vegApp', [
+	'ngRoute'
+	]);
 
-vegApp.controller('itemListController'['$scope',function($scope)]{
+vegApp.config(['$routeProvider',
+  function($routeProvider) {
 
-function itemListController( $scope ){
+		$routeProvider
+		.when('/', {
+			templateUrl: 'index3.html',
+			controller: 'itemList'
+		})
+		.when('/login', {
+			templateUrl: 'partials/login.html',
+			controller: 'registration'
+		})
+		.when('/moreinfo', {
+			templateUrl: 'partials/moreinfo.html',
+			controller: 'moreinfo'
+		})
+		.when('/recipes', {
+			templateUrl: 'recipes.html',
+			controller: 'recipes'
+		})
+		.otherwise({
+			redirectTo: '/login'
+		});
+	}
+]);
 
+vegApp.controller('itemListController', ['$scope',
+	function($scope) {
 		$scope.items = [
-		{type: 'strawberry', name: 'Herbert Strawberry', occupation: 'dogwalker', superpower: 'power-C boost', imageurl: 'images/strawb.jpg' },
-
-{type: 'blueberry', name: 'Ulysses Blueberry', occupation: 'construction worker', superpower: 'super strength', imageurl: 'images/blueb.jpg' },
-
-{type: 'orange', name: 'Otto Sly Orange', occupation: 'ninja', superpower: 'serious defense', imageurl: 'images/orange.jpg' }
-
+			{type: 'strawberry', name: 'Herbert Strawberry', occupation: 'dogwalker', superpower: 'power-C boost', imageurl: 'images/strawb.jpg' },
+			{type: 'blueberry', name: 'Ulysses Blueberry', occupation: 'construction worker', superpower: 'super strength', imageurl: 'images/blueb.jpg' },
+			{type: 'orange', name: 'Otto Sly Orange', occupation: 'ninja', superpower: 'serious defense', imageurl: 'images/orange.jpg' }
 		];
 
 		$scope.additem = function(item){
 			$scope.items.push( item );
 			$scope.adding_item = {};
 		};
-};
-	});
+		console.log('scope', $scope);
+	}
+]);
 
-vegApp.config(["$routeProvider", function($routeProvider) {
-
-	$routeProvider.
-	when("/", {
-		templateUrl: "index3.html",
-		controller: "itemList"
-	}).
-	when("/login", {
-		templateUrl: "partials/login.html",
-		controller: "registration"
-	}).
-	when("/moreinfo", {
-		templateUrl: "partials/moreinfo.html"
-		controller: "moreinfo"
-	}).
-	when("/recipes", {
-		templateUrl: "recipes.html"
-		controller: "recipes"
-	}).
-	otherwise({
-		redirectTo: "/login"
-	});
-
-}])
 
